@@ -119,7 +119,7 @@ const anotherOne = [
 //starting function - begins with manager because each team will always have a manager 
 function init() {
     inquirer.prompt(managerQuestions).then((response) => {
-        console.log(response);
+        managerPromt();
         //this will call the next function which will promt the user to select the next type of employee they are adding 
         next();
 
@@ -143,11 +143,20 @@ function next() {
         }
     })
 }
-
+//function for the manager questions that will be called first when initiated
+function managerPromt() {
+    inquirer.prompt(engineerQuestions).then((response) => {
+        console.log(response);
+        teamArray.push(response)
+        //this will call the next function which will promt the user to select the next type of employee they are adding 
+        next();
+    })
+}
 //Function for Engineer promts
 function engineerPromt() {
     inquirer.prompt(engineerQuestions).then((response) => {
         console.log(response);
+        teamArray.push(response)
         //this will call the next function which will promt the user to select the next type of employee they are adding 
         next();
     })
@@ -157,6 +166,7 @@ function engineerPromt() {
 function internPromt() {
     inquirer.prompt(internQuestions).then((response) => {
         console.log(response);
+        teamArray.push(response)
         //this will call the next function which will promt the user to select the next type of employee they are adding 
         next();
     })
