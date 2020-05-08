@@ -42,7 +42,7 @@ const managerQuestions = [
 
     {
         type: 'input',
-        name: 'Office',
+        name: 'office',
         message: 'What is this managers office number? if you are the manager of this team, enter your office number'
     },
 ]
@@ -53,7 +53,7 @@ const engineerQuestions = [
     {
         type: 'input',
         name: 'engiName',
-        message: 'Enter the name if this engineer'
+        message: 'Enter the name of this engineer'
     },
 
     {
@@ -81,7 +81,7 @@ const internQuestions = [
     {
         type: 'input',
         name: 'internName',
-        message: 'Enter the name if this intern'
+        message: 'Enter the name of this intern'
     },
 
     {
@@ -98,7 +98,7 @@ const internQuestions = [
 
     {
         type: 'input',
-        name: 'School',
+        name: 'school',
         message: 'What school does this interen attend, if this intern is not currently attending a school enter "N/A" ',
     },
 ]
@@ -108,7 +108,7 @@ const internQuestions = [
 const anotherOne = [
     {
         type: 'list',
-        name: 'Next Employee',
+        name: 'nextEmployee',
         message: 'Select the type of team member you would like to add next, if you are done select "Done" to generate your team ',
         choices: ['Engineer', 'Intern', 'Done']
     }
@@ -122,31 +122,43 @@ function init() {
         console.log(response);
         //this will call the next function which will promt the user to select the next type of employee they are adding 
         next();
-        engineerPromt();
-        internPromt();
+
     })
 }
 
 
 //function that will promt the user to select the next type of employee they are adding 
-//NEED TO ADD IF STATEMENT HERE TO CALL THE INTERN AND ENGINEER FUNCTIONS
 function next() {
     inquirer.prompt(anotherOne).then((response) => {
-        console.log(response)
+        console.log(response);
+        switch (response.nextEmployee) {
+            case 'Engineer':
+                engineerPromt();
+                break;
+            case 'Intern':
+                internPromt();
+                break;
+            case 'Done':
+                console.log('done, test console message will udpate later')
+        }
     })
 }
 
 //Function for Engineer promts
 function engineerPromt() {
     inquirer.prompt(engineerQuestions).then((response) => {
-        console.log(response)
+        console.log(response);
+        //this will call the next function which will promt the user to select the next type of employee they are adding 
+        next();
     })
 }
 
 //Function for Intern promts
 function internPromt() {
     inquirer.prompt(internQuestions).then((response) => {
-        console.log(response)
+        console.log(response);
+        //this will call the next function which will promt the user to select the next type of employee they are adding 
+        next();
     })
 }
 
@@ -155,6 +167,10 @@ function internPromt() {
 //calls the initiating function 
 init();
 
+
+
+//testing below 
+// next();
 
 
 
