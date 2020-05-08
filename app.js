@@ -103,22 +103,57 @@ const internQuestions = [
     },
 ]
 
+//this question will promt the user if they want to add another employee
+
+const anotherOne = [
+    {
+        type: 'list',
+        name: 'Next Employee',
+        message: 'Select the type of team member you would like to add next, if you are done select "Done" to generate your team ',
+        choices: ['Engineer', 'Intern', 'Done']
+    }
+]
+// end of questions 
+
+
+//starting function - begins with manager because each team will always have a manager 
+function init() {
+    inquirer.prompt(managerQuestions).then((response) => {
+        console.log(response);
+        //this will call the next function which will promt the user to select the next type of employee they are adding 
+        next();
+        engineerPromt();
+        internPromt();
+    })
+}
+
+
+//function that will promt the user to select the next type of employee they are adding 
+//NEED TO ADD IF STATEMENT HERE TO CALL THE INTERN AND ENGINEER FUNCTIONS
+function next() {
+    inquirer.prompt(anotherOne).then((response) => {
+        console.log(response)
+    })
+}
+
+//Function for Engineer promts
+function engineerPromt() {
+    inquirer.prompt(engineerQuestions).then((response) => {
+        console.log(response)
+    })
+}
+
+//Function for Intern promts
+function internPromt() {
+    inquirer.prompt(internQuestions).then((response) => {
+        console.log(response)
+    })
+}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+//calls the initiating function 
+init();
 
 
 
