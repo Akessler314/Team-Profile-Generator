@@ -148,6 +148,7 @@ function managerPromt() {
     inquirer.prompt(engineerQuestions).then((response) => {
         console.log(response);
         teamArray.push(response)
+        console.log(teamArray)
         //this will call the next function which will promt the user to select the next type of employee they are adding 
         next();
     })
@@ -157,6 +158,7 @@ function engineerPromt() {
     inquirer.prompt(engineerQuestions).then((response) => {
         console.log(response);
         teamArray.push(response)
+        console.log(teamArray)
         //this will call the next function which will promt the user to select the next type of employee they are adding 
         next();
     })
@@ -167,6 +169,7 @@ function internPromt() {
     inquirer.prompt(internQuestions).then((response) => {
         console.log(response);
         teamArray.push(response)
+        console.log(teamArray)
         //this will call the next function which will promt the user to select the next type of employee they are adding 
         next();
     })
@@ -176,11 +179,6 @@ function internPromt() {
 
 //calls the initiating function 
 init();
-
-
-
-//testing below 
-// next();
 
 
 
