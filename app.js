@@ -118,18 +118,15 @@ const anotherOne = [
 
 //starting function - begins with manager because each team will always have a manager 
 function init() {
-    inquirer.prompt(managerQuestions).then((response) => {
+        //starts with the manager function
         managerPromt();
-        //this will call the next function which will promt the user to select the next type of employee they are adding 
-        next();
-
-    })
 }
 
 
 //function that will promt the user to select the next type of employee they are adding 
 function next() {
     inquirer.prompt(anotherOne).then((response) => {
+        
         console.log(response);
         switch (response.nextEmployee) {
             case 'Engineer':
@@ -145,20 +142,35 @@ function next() {
 }
 //function for the manager questions that will be called first when initiated
 function managerPromt() {
-    inquirer.prompt(engineerQuestions).then((response) => {
-        console.log(response);
-        teamArray.push(response)
-        console.log(teamArray)
+    inquirer.prompt(managerQuestions).then((response) => {
+
+        let name = response.managerName;
+        let id = response.managerID;
+        let email = response.managerEmail;
+        let office = response.office;
+        // creats an object for this manager 
+        const manager = new Manager(name, id, email, office);
+        //pushes the new manager object to the empty array to be used later 
+        teamArray.push(manager);
         //this will call the next function which will promt the user to select the next type of employee they are adding 
+        console.log(teamArray);
+
         next();
     })
 }
 //Function for Engineer promts
 function engineerPromt() {
     inquirer.prompt(engineerQuestions).then((response) => {
-        console.log(response);
-        teamArray.push(response)
-        console.log(teamArray)
+
+        let name = response. engiName;
+        let id = response.engiID;
+        let email = response.engiEmail;
+        let gh = response.gh;
+        // creats an object for this manager 
+        const engineer = new Engineer (name, id, email, gh);
+
+        teamArray.push(engineer);
+        console.log(teamArray);
         //this will call the next function which will promt the user to select the next type of employee they are adding 
         next();
     })
@@ -167,9 +179,17 @@ function engineerPromt() {
 //Function for Intern promts
 function internPromt() {
     inquirer.prompt(internQuestions).then((response) => {
-        console.log(response);
-        teamArray.push(response)
-        console.log(teamArray)
+
+        let name = response. internName;
+        let id = response.internID;
+        let email = response.internEmail;
+        let school = response.school;
+
+        const intern = new Intern (name, id, email, school);
+
+        teamArray.push(intern);
+        console.log(teamArray);
+
         //this will call the next function which will promt the user to select the next type of employee they are adding 
         next();
     })
