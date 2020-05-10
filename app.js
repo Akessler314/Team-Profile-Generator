@@ -137,7 +137,8 @@ function next() {
                 internPromt();
                 break;
             case 'Done':
-                console.log('done, test console message will udpate later')
+                console.log('Creating your team!')
+                makeTeam();
         }
     })
 }
@@ -168,7 +169,7 @@ function engineerPromt() {
         let email = response.engiEmail;
         let github = response.github;
         // creats an object for this manager 
-        const engineer = new Engineer (name, id, email, gh);
+        const engineer = new Engineer (name, id, email, github);
 
         teamArray.push(engineer);
         console.log(teamArray);
@@ -196,9 +197,18 @@ function internPromt() {
     })
 }
 
+//function to make the file 
+function makeTeam() {
+fs.writeFile(outputPath, render(teamArray), function(err) {
+if (err) { 
+    return console.log(err)
+}
+})
 
+}
 
 //calls the initiating function 
 init();
+
 
 
